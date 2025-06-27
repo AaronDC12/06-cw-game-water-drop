@@ -14,13 +14,16 @@
                 <div class="bucket">
                     <div class="water-level" id="water-level"></div>
                 </div>
+                <!-- Score and timer below bucket -->
+                <div class="bucket-info">
+                    <div class="score">Score: <span id="score">0</span></div>
+                    <div class="timer">Time: <span id="time">30</span>s</div>
+                </div>
             </div>
             <div class="game-content">
                 <h1 class="game-title">Water Drop</h1>
                 <p class="game-tagline">Catch the good drops, avoid the bad ones! Every drop counts!</p>
                 <div class="score-panel">
-                    <div class="score">Score: <span id="score">0</span></div>
-                    <div class="timer">Time: <span id="time">30</span>s</div>
                     <button id="start-btn">Start Game</button>
                     <button id="reset-btn">Reset Game</button>
                     <button id="new-game-btn" style="display: none;">Start New Game</button>
@@ -36,11 +39,24 @@
                 <div id="confetti-container"></div>
                 <div id="game-container"></div>
             </div>
-            <div class="record-board">
-                <h2>Record Board</h2>
-                <ul id="record-list">
-                    <!-- Records will be dynamically added here -->
-                </ul>
+            <div>
+                <!-- Footer moved above record board, outside .game-content -->
+                <footer class="cw-footer">
+                    <div>
+                        <a href="https://www.charitywater.org/" target="_blank" rel="noopener" class="cw-link">charity: water Website</a>
+                        &nbsp;|&nbsp;
+                        <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener" class="cw-link">Donate Now</a>
+                    </div>
+                    <div class="cw-footer-text">
+                        Not affiliated with charity: water. For more info, visit their official site.
+                    </div>
+                </footer>
+                <div class="record-board">
+                    <h2>Record Board</h2>
+                    <ul id="record-list">
+                        <!-- Records will be dynamically added here -->
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

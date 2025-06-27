@@ -1,4 +1,3 @@
-
 // Variables to control game state
 let gameRunning = false; // Keeps track of whether game is active or not
 let dropMaker; // Will store our timer that creates drops regularly
@@ -20,6 +19,8 @@ const difficultySelector = document.getElementById("difficulty");
 
 let gameRecords = []; // Array to store the last 5 game records
 let badDropFrequency = 3; // Default frequency for bad drops (1 bad drop every 3 good drops)
+let dropInterval = 1000; // Default drop interval (ms)
+let dropSpeed = 4; // Default drop fall duration (seconds)
 
 newGameButton.addEventListener("click", () => {
   resetGame();
@@ -46,24 +47,35 @@ difficultySelector.addEventListener("change", () => {
   const difficulty = difficultySelector.value;
   if (difficulty === "easy") {
     badDropFrequency = 5; // Fewer bad drops
+    dropInterval = 1200;
+    dropSpeed = 5;
   } else if (difficulty === "medium") {
     badDropFrequency = 3; // Default medium difficulty
+    dropInterval = 1000;
+    dropSpeed = 4;
   } else if (difficulty === "hard") {
     badDropFrequency = 2; // More bad drops
+    dropInterval = 700;
+    dropSpeed = 2.5;
   }
 });
 
-function displayMessage(message, duration = 3000) {
+function displayMessage(message, duration = 3000, persist = false) {
   messageElement.textContent = message;
   messageElement.style.display = "block";
-  setTimeout(() => {
-    messageElement.style.display = "none";
-  }, duration); // Hide the message after the specified duration
+  if (!persist) {
+    setTimeout(() => {
+      messageElement.style.display = "none";
+    }, duration);
+  }
 }
 
 function startGame() {
   // Prevent multiple games from running at once
   if (gameRunning) return;
+
+  // Hide any persistent message
+  messageElement.style.display = "none";
 
   gameRunning = true;
   timeLeft = 30; // Reset timer
@@ -71,7 +83,14 @@ function startGame() {
   scoreElement.textContent = score; // Update score display
   timeElement.textContent = timeLeft; // Update timer display
   newGameButton.style.display = "none"; // Hide "Start New Game" button
+  waterLevelElement.style.height = "0%"; // Reset water level at game start
   displayMessage("Game Started! Catch the drops!", 2000);
+
+  // Focus the game container so user sees the whole game area
+  const gameContainer = document.getElementById("game-container");
+  if (gameContainer && typeof gameContainer.scrollIntoView === "function") {
+    gameContainer.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 
   // Start the countdown
   timer = setInterval(() => {
@@ -88,15 +107,23 @@ function startGame() {
     }
   }, 1000);
 
-  // Create new drops every second (1000 milliseconds)
-  dropMaker = setInterval(createDrop, 1000);
+  // Create new drops at the interval set by difficulty
+  dropMaker = setInterval(createDrop, dropInterval);
 }
+
+// Add audio elements for sound effects (interchanged)
+const goodDropAudio = new Audio('Sonic_Soundfx_MUSCWind_Tin_Whistle_Series_Flurry_03.mp3');
+const badDropAudio = new Audio('Sonic_Soundfx_MUSCWind_Tin_Whistle_Series_Flurry_02.mp3');
+// Add win sound effect
+const winAudio = new Audio('human_crowd_approx_150_people_cheer_indoors.mp3');
+// Add defeat sound effect
+const defeatAudio = new Audio('Game Over sound.mp3');
 
 function createDrop() {
   // Create a new div element that will be our drop
   const drop = document.createElement("div");
 
-  // Determine if the drop is a bad drop based on the frequency
+  // Randomize drop type based on frequency, but shuffle order
   const isBadDrop = Math.random() < 1 / badDropFrequency;
   drop.className = isBadDrop ? "bad-drop" : "water-drop";
 
@@ -111,21 +138,29 @@ function createDrop() {
   const xPosition = Math.random() * (gameWidth - 60);
   drop.style.left = xPosition + "px";
 
-  // Make drops fall for 4 seconds
-  drop.style.animationDuration = "4s";
+  // Make drops fall for X seconds based on difficulty
+  drop.style.animationDuration = dropSpeed + "s";
+
+  // Randomize z-index to mix drops visually
+  drop.style.zIndex = Math.floor(Math.random() * 10) + 1;
 
   // Add click event for good and bad drops
   drop.addEventListener("click", () => {
+    if (!gameRunning) return; // Prevent interaction if game is not running
+    if (drop.parentNode) drop.parentNode.removeChild(drop); // Remove drop from DOM
     if (drop.classList.contains("bad-drop")) {
+      badDropAudio.currentTime = 0;
+      badDropAudio.play();
       score -= 5; // Deduct points for bad drops
       showScoreFeedback(drop, "-5");
     } else {
+      goodDropAudio.currentTime = 0;
+      goodDropAudio.play();
       score += 10; // Increment score for good drops
       showScoreFeedback(drop, "+10");
     }
     scoreElement.textContent = score; // Update score display
     updateWaterLevel(); // Update water level in the bucket
-    drop.remove(); // Remove drop after clicking
 
     // Check if the user has won
     if (score >= 100) {
@@ -134,9 +169,12 @@ function createDrop() {
       gameRunning = false; // Stop the game
       const timeTaken = 30 - timeLeft; // Calculate time taken
       updateRecordBoard(timeTaken); // Update the record board
-      displayMessage(`🎉 Congratulations, You Win! Time Taken: ${timeTaken} seconds 🎉`, 5000); // Display win message with time
+      winAudio.currentTime = 0;
+      winAudio.play(); // Play win sound immediately on win
+      displayMessage(`🎉 Congratulations, You Win! Time Taken: ${timeTaken} seconds 🎉`, 5000, true); // Display win message with time
       celebrateWin();
       newGameButton.style.display = "block"; // Show "Start New Game" button
+      waterLevelElement.style.height = "0%"; // Reset bucket after win
     }
   });
 
@@ -145,17 +183,37 @@ function createDrop() {
 
   // Remove drops that reach the bottom (weren't clicked)
   drop.addEventListener("animationend", () => {
-    drop.remove(); // Clean up drops that weren't caught
+    if (drop.parentNode) drop.parentNode.removeChild(drop); // Remove drop from DOM
   });
 }
 
 function showScoreFeedback(drop, text) {
+  // Create feedback element
   const feedback = document.createElement("div");
   feedback.className = "score-feedback";
   feedback.textContent = text;
-  feedback.style.left = drop.style.left;
-  feedback.style.top = drop.getBoundingClientRect().top + "px";
-  document.body.appendChild(feedback);
+
+  // Position feedback at the center of the drop (inside game-container)
+  const gameContainer = document.getElementById("game-container");
+  const dropRect = drop.getBoundingClientRect();
+  const containerRect = gameContainer.getBoundingClientRect();
+
+  feedback.style.position = "absolute";
+  feedback.style.left = (dropRect.left - containerRect.left + dropRect.width / 2 - 20) + "px";
+  feedback.style.top = (dropRect.top - containerRect.top + dropRect.height / 2 - 20) + "px";
+  feedback.style.pointerEvents = "none";
+  feedback.style.zIndex = 1000;
+
+  gameContainer.appendChild(feedback);
+
+  // Add shake to bucket if bad drop
+  if (text === "-5") {
+    const bucket = document.querySelector('.bucket');
+    if (bucket) {
+      bucket.classList.add('shake-anim');
+      setTimeout(() => bucket.classList.remove('shake-anim'), 500);
+    }
+  }
 
   feedback.addEventListener("animationend", () => feedback.remove());
 }
@@ -176,15 +234,33 @@ function resetGame() {
   scoreElement.textContent = score; // Update score display
   timeElement.textContent = timeLeft; // Update timer display
   waterLevelElement.style.height = "0%"; // Reset water level
-  displayMessage("Game Reset! Press Start to play again.", 2000);
+  messageElement.style.display = "none"; // Hide any persistent message
+  // Show a random motivational message
+  const messages = [
+    "Game Reset! Press Start to play again.",
+    "Ready for another try? You can do it!",
+    "Every drop counts. Go again!",
+    "Keep going! Clean water is worth it!",
+    "Reset! Let's fill that bucket!"
+  ];
+  displayMessage(messages[Math.floor(Math.random() * messages.length)], 2000);
 }
 
 function endGame() {
   gameRunning = false;
   clearInterval(timer); // Stop the timer
   clearInterval(dropMaker); // Stop creating drops
-  displayMessage(`Game Over! Your final score is ${score}. Better luck next time!`, 5000); // Notify the player
+  displayMessage(`Game Over! Your final score is ${score}. Better luck next time!`, 5000, true); // Show message and persist
+  defeatAudio.currentTime = 0;
+  defeatAudio.play(); // Play defeat sound immediately and in sync with message
   newGameButton.style.display = "block"; // Show "Start New Game" button
+  waterLevelElement.style.height = "0%"; // Reset bucket after game ends
+
+  // Scroll to the buttons so user can easily start/reset
+  const btn = document.getElementById("start-btn");
+  if (btn && typeof btn.scrollIntoView === "function") {
+    btn.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 }
 
 function celebrateWin() {
@@ -210,6 +286,16 @@ function celebrateWin() {
 
       confetti.addEventListener("animationend", () => confetti.remove());
     }
+  }
+  // Show persistent congratulatory message
+  displayMessage(`🎉 Congratulations, You Win! Time Taken: ${30 - timeLeft} seconds 🎉`, 5000, true);
+  newGameButton.style.display = "block";
+  waterLevelElement.style.height = "0%"; // Reset bucket after win
+
+  // Scroll to the buttons so user can easily start/reset
+  const btn = document.getElementById("start-btn");
+  if (btn && typeof btn.scrollIntoView === "function") {
+    btn.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 }
 
