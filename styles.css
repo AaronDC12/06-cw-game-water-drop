@@ -22,7 +22,6 @@ Fonts:
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
 
 body {
     display: flex;
@@ -37,7 +36,6 @@ body {
     letter-spacing: 0.01em;
     position: relative;
     padding-bottom: 90px; /* slightly more for mobile safety */
-}
 
 body::before {
     content: "";
@@ -48,7 +46,6 @@ body::before {
     background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle fill="%232E9DF7" fill-opacity="0.08" cx="50" cy="50" r="40"/></svg>') repeat;
     animation: bg-bubbles 20s linear infinite;
     opacity: 0.7;
-}
 
 @keyframes bg-bubbles {
     0% { background-position: 0 0; }
@@ -511,11 +508,7 @@ body::before {
 
 /* Footer styles for charity: water links */
 .cw-footer {
-    position: absolute;
-    top: 32px;
-    right: 32px;
-    left: auto;
-    transform: none;
+    position: static;
     width: max-content;
     min-width: 220px;
     max-width: 320px;
@@ -532,8 +525,6 @@ body::before {
     z-index: 500;
     margin: 0 0 16px 0;
     pointer-events: auto;
-    /* Remove fixed right/top for above record board placement */
-    position: static;
 }
 
 @media (max-width: 1200px) {
@@ -701,11 +692,7 @@ body::before {
 
 /* Footer styles for charity: water links */
 .cw-footer {
-    position: absolute;
-    top: 32px;
-    right: 32px;
-    left: auto;
-    transform: none;
+    position: static;
     width: max-content;
     min-width: 220px;
     max-width: 320px;
@@ -722,8 +709,6 @@ body::before {
     z-index: 500;
     margin: 0 0 16px 0;
     pointer-events: auto;
-    /* Remove fixed right/top for above record board placement */
-    position: static;
 }
 
 @media (max-width: 1200px) {
@@ -891,11 +876,7 @@ body::before {
 
 /* Footer styles for charity: water links */
 .cw-footer {
-    position: absolute;
-    top: 32px;
-    right: 32px;
-    left: auto;
-    transform: none;
+    position: static;
     width: max-content;
     min-width: 220px;
     max-width: 320px;
@@ -912,8 +893,6 @@ body::before {
     z-index: 500;
     margin: 0 0 16px 0;
     pointer-events: auto;
-    /* Remove fixed right/top for above record board placement */
-    position: static;
 }
 
 @media (max-width: 1200px) {
@@ -1036,7 +1015,7 @@ body::before {
     }
     #start-btn, #reset-btn, #new-game-btn {
         font-size: 7px;
-    padding: 5px;2px 4px;
+    padding: 5px;
     font-size: 16px;
     border: 2px solid #2E9DF7; /* Charity: water Blue */
     border-radius: 4px;
@@ -1192,6 +1171,24 @@ body::before {
     }
     .cw-footer-text {
         font-size: 9px;
+    }
+}
+
+@keyframes shake-anim {
+    0% { transform: translateX(0);}
+    20% { transform: translateX(-8px);}
+    40% { transform: translateX(8px);}
+    60% { transform: translateX(-6px);}
+    80% { transform: translateX(6px);}
+    100% { transform: translateX(0);}
+}
+.shake-anim {
+    animation: shake-anim 0.5s;
+}
+}
+.shake-anim {
+    animation: shake-anim 0.5s;
+}
     }
 }
 
