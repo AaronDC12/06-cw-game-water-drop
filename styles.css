@@ -32,7 +32,7 @@ body {
     background: linear-gradient(135deg, #F0F8FF 0%, #8BD1CB 100%);
     overflow-x: hidden;
     font-family: 'Montserrat', 'Segoe UI', 'Avenir', Arial, sans-serif;
-    font-size: 22px; /* Increased base font size */
+    font-size: 22px;
     line-height: 1.6;
     letter-spacing: 0.01em;
     position: relative;
@@ -105,113 +105,43 @@ body::before {
     overflow: hidden;
 }
 
-#start-btn {
-    padding: 16px 32px;
-    background-color: #4FCB53;
-    color: white;
+#start-btn, #reset-btn, #new-game-btn {
+    font-size: 28px;
+    padding: 22px 48px;
+    min-width: 200px;
+    border-radius: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
     border: none;
-    border-radius: 8px;
     cursor: pointer;
-    font-size: 28px;         /* Larger font for readability */
-    padding: 22px 48px;      /* Larger padding for bigger button */
-    min-width: 200px;        /* Ensure buttons are wide enough */
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
-    box-shadow: 0 2px 8px rgba(44, 130, 201, 0.12);
     outline: none;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 2px 8px rgba(44, 130, 201, 0.12);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
 }
 
-#start-btn:active {
-    transform: scale(0.96);
-}
-
-#start-btn::after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 50%; 
-    top: 50%;
-    width: 0; 
-    height: 0;
-    background: rgba(255,255,255,0.2);
-    border-radius: 100%;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s;
-    z-index: 0;
-}
-
-#start-btn:active::after {
-    width: 120%;
-    height: 120%;
-    transition: width 0s, height 0s;
+#start-btn {
+    background-color: #4FCB53;
+    color: white;
 }
 
 #reset-btn {
-    padding: 16px 32px;
     background-color: #FF902A;
     color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 28px;         /* Larger font for readability */
-    padding: 22px 48px;      /* Larger padding for bigger button */
-    min-width: 200px;        /* Ensure buttons are wide enough */
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
-    box-shadow: 0 2px 8px rgba(44, 130, 201, 0.12);
-    outline: none;
-    position: relative;
-    overflow: hidden;
-}
-
-#reset-btn:active {
-    transform: scale(0.96);
-}
-
-#reset-btn::after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 50%; 
-    top: 50%;
-    width: 0; 
-    height: 0;
-    background: rgba(255,255,255,0.2);
-    border-radius: 100%;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s;
-    z-index: 0;
-}
-
-#reset-btn:active::after {
-    width: 120%;
-    height: 120%;
-    transition: width 0s, height 0s;
 }
 
 #new-game-btn {
-    padding: 16px 32px;
     background-color: #2E9DF7;
     color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 28px;         /* Larger font for readability */
-    padding: 22px 48px;      /* Larger padding for bigger button */
-    min-width: 200px;        /* Ensure buttons are wide enough */
     display: none;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
-    box-shadow: 0 2px 8px rgba(44, 130, 201, 0.12);
-    outline: none;
-    position: relative;
-    overflow: hidden;
 }
 
-#new-game-btn:active {
+#start-btn:active, #reset-btn:active, #new-game-btn:active {
     transform: scale(0.96);
 }
 
-#new-game-btn::after {
+#start-btn::after, #reset-btn::after, #new-game-btn::after {
     content: "";
     display: block;
     position: absolute;
@@ -226,7 +156,7 @@ body::before {
     z-index: 0;
 }
 
-#new-game-btn:active::after {
+#start-btn:active::after, #reset-btn:active::after, #new-game-btn:active::after {
     width: 120%;
     height: 120%;
     transition: width 0s, height 0s;
@@ -589,7 +519,7 @@ body::before {
 
 @media (max-width: 600px) {
     body {
-        font-size: 16px;
+        font-size: 15px;
     }
     .game-title {
         font-size: 32px;
@@ -600,6 +530,74 @@ body::before {
     .score-panel {
         font-size: 16px;
         padding: 8px;
+    }
+    .score, .timer {
+        font-size: 18px;
+    }
+    #start-btn, #reset-btn, #new-game-btn {
+        font-size: 18px;
+        padding: 12px 24px;
+        min-width: 120px;
+    }
+    .record-board {
+        font-size: 14px;
+        padding: 6px;
+    }
+    .cw-footer {
+        font-size: 13px;
+        padding: 12px 0 6px 0;
+    }
+    .cw-footer-text {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 400px) {
+    .game-title {
+        font-size: 20px;
+    }
+    .game-tagline {
+        font-size: 10px;
+    }
+    .score-panel {
+        font-size: 10px;
+        padding: 2px;
+    }
+    .score, .timer {
+        font-size: 10px;
+    }
+    #start-btn, #reset-btn, #new-game-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+        min-width: 80px;
+    }
+    .record-board {
+        font-size: 10px;
+        padding: 2px;
+    }
+    .cw-footer {
+        font-size: 9px;
+        padding: 6px 0 3px 0;
+    }
+    .cw-footer-text {
+        font-size: 8px;
+    }
+}
+
+/* Keyframes and utility classes */
+@keyframes shake-anim {
+    0% { transform: translateX(0);}
+    20% { transform: translateX(-8px);}
+    40% { transform: translateX(8px);}
+    60% { transform: translateX(-6px);}
+    80% { transform: translateX(6px);}
+    100% { transform: translateX(0);}
+}
+.shake-anim {
+    animation: shake-anim 0.5s;
+}
+
+/* END OF FILE. Remove all code after this line. */
     }
     .score, .timer {
         font-size: 18px;
@@ -713,7 +711,9 @@ body::before {
         font-size: 7px;
         padding: 5px;
     }
-}
+                top: unset;
+            }
+        }
         top: unset;
     }
 }
