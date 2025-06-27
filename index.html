@@ -1,28 +1,50 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Watch List Generator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Drop Game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <div class="container">
-    <h1>🍿 Watch List Generator</h1>
-    <select id="genre">
-      <option value="" disabled selected>Select a genre</option>
-      <option value="Comedy">Comedy</option>
-      <option value="Action">Action</option>
-      <option value="Drama">Drama</option>
-      <option value="Sci-Fi">Sci-Fi</option>
-    </select>
-    <div id="movieRecommendations"></div>
-  </div>
-  <script src="script.js"></script>
+    <div class="game-wrapper">
+        <div class="game-layout">
+            <div class="logo-container">
+                <img src="/img/cw_logo.png" alt="Charity: water logo" class="game-logo">
+                <div class="bucket">
+                    <div class="water-level" id="water-level"></div>
+                </div>
+            </div>
+            <div class="game-content">
+                <h1 class="game-title">Water Drop</h1>
+                <p class="game-tagline">Catch the good drops, avoid the bad ones! Every drop counts!</p>
+                <div class="score-panel">
+                    <div class="score">Score: <span id="score">0</span></div>
+                    <div class="timer">Time: <span id="time">30</span>s</div>
+                    <button id="start-btn">Start Game</button>
+                    <button id="reset-btn">Reset Game</button>
+                    <button id="new-game-btn" style="display: none;">Start New Game</button>
+                </div>
+                <div class="difficulty-selector">
+                    <label for="difficulty">Difficulty:</label>
+                    <select id="difficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+                <div id="confetti-container"></div>
+                <div id="game-container"></div>
+            </div>
+            <div class="record-board">
+                <h2>Record Board</h2>
+                <ul id="record-list">
+                    <!-- Records will be dynamically added here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
-
 </html>
-
