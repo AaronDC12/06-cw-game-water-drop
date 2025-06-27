@@ -20,14 +20,17 @@
                     <div class="timer">Time: <span id="time">30</span>s</div>
                 </div>
             </div>
+            
             <div class="game-content">
                 <h1 class="game-title">Water Drop</h1>
                 <p class="game-tagline">Catch the good drops, avoid the bad ones! Every drop counts!</p>
+                
                 <div class="score-panel">
                     <button id="start-btn">Start Game</button>
                     <button id="reset-btn">Reset Game</button>
                     <button id="new-game-btn" style="display: none;">Start New Game</button>
                 </div>
+                
                 <div class="difficulty-selector">
                     <label for="difficulty">Difficulty:</label>
                     <select id="difficulty">
@@ -36,13 +39,15 @@
                         <option value="hard">Hard</option>
                     </select>
                 </div>
+                
                 <div id="confetti-container"></div>
                 <div id="game-container"></div>
             </div>
-            <div>
+            
+            <div class="footer-section">
                 <!-- Footer above record board -->
                 <footer class="cw-footer">
-                    <div>
+                    <div class="footer-links">
                         <a href="https://www.charitywater.org/" target="_blank" rel="noopener" class="cw-link">charity: water Website</a>
                         &nbsp;|&nbsp;
                         <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener" class="cw-link">Donate Now</a>
@@ -51,6 +56,7 @@
                         Not affiliated with charity: water. For more info, visit their official site.
                     </div>
                 </footer>
+                
                 <div class="record-board">
                     <h2>Record Board</h2>
                     <ul id="record-list">

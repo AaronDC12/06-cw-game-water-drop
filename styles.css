@@ -22,6 +22,7 @@ Fonts:
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
 
 body {
     display: flex;
@@ -31,21 +32,26 @@ body {
     background: linear-gradient(135deg, #F0F8FF 0%, #8BD1CB 100%);
     overflow-x: hidden;
     font-family: 'Montserrat', 'Segoe UI', 'Avenir', Arial, sans-serif;
-    font-size: 20px;
+    font-size: 22px; /* Increased base font size */
     line-height: 1.6;
     letter-spacing: 0.01em;
     position: relative;
-    padding-bottom: 90px; /* slightly more for mobile safety */
+    padding-bottom: 90px;
+}
 
 body::before {
     content: "";
     position: fixed;
     z-index: 0;
-    left: 0; top: 0; width: 100vw; height: 100vh;
+    left: 0; 
+    top: 0; 
+    width: 100vw; 
+    height: 100vh;
     pointer-events: none;
     background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle fill="%232E9DF7" fill-opacity="0.08" cx="50" cy="50" r="40"/></svg>') repeat;
     animation: bg-bubbles 20s linear infinite;
     opacity: 0.7;
+}
 
 @keyframes bg-bubbles {
     0% { background-position: 0 0; }
@@ -72,7 +78,7 @@ body::before {
     position: relative;
     z-index: 1;
     box-shadow: 0 4px 24px rgba(44, 130, 201, 0.12);
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 600;
     letter-spacing: 0.01em;
     gap: 18px;
@@ -84,7 +90,7 @@ body::before {
 }
 
 .timer, .score {
-    color: #131313; /* Dark text for contrast */
+    color: #131313;
     text-shadow: 0 2px 8px #fff, 0 0px 16px #2E9DF733;
     filter: drop-shadow(0 2px 8px #2E9DF733);
 }
@@ -92,25 +98,23 @@ body::before {
 #game-container {
     width: 800px;
     height: 600px;
-    background-color: #8BD1CB; /* Charity: water Light Blue */
-    border: 2px solid #2E9DF7; /* Charity: water Blue */
+    background-color: #8BD1CB;
+    border: 2px solid #2E9DF7;
     border-radius: 8px;
     position: relative;
     overflow: hidden;
 }
 
-
 #start-btn {
-    padding: 8px 16px;
-    background-color: #4FCB53; /* Charity: water Green */
+    padding: 16px 32px;
+    background-color: #4FCB53;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    padding: 12px 28px;
+    font-size: 28px;         /* Larger font for readability */
+    padding: 22px 48px;      /* Larger padding for bigger button */
+    min-width: 200px;        /* Ensure buttons are wide enough */
     transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
     box-shadow: 0 2px 8px rgba(44, 130, 201, 0.12);
     outline: none;
@@ -126,8 +130,10 @@ body::before {
     content: "";
     display: block;
     position: absolute;
-    left: 50%; top: 50%;
-    width: 0; height: 0;
+    left: 50%; 
+    top: 50%;
+    width: 0; 
+    height: 0;
     background: rgba(255,255,255,0.2);
     border-radius: 100%;
     transform: translate(-50%, -50%);
@@ -142,16 +148,15 @@ body::before {
 }
 
 #reset-btn {
-    padding: 8px 16px;
-    background-color: #FF902A; /* Charity: water Orange */
+    padding: 16px 32px;
+    background-color: #FF902A;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    padding: 12px 28px;
+    font-size: 28px;         /* Larger font for readability */
+    padding: 22px 48px;      /* Larger padding for bigger button */
+    min-width: 200px;        /* Ensure buttons are wide enough */
     transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
     box-shadow: 0 2px 8px rgba(44, 130, 201, 0.12);
     outline: none;
@@ -167,8 +172,10 @@ body::before {
     content: "";
     display: block;
     position: absolute;
-    left: 50%; top: 50%;
-    width: 0; height: 0;
+    left: 50%; 
+    top: 50%;
+    width: 0; 
+    height: 0;
     background: rgba(255,255,255,0.2);
     border-radius: 100%;
     transform: translate(-50%, -50%);
@@ -183,17 +190,16 @@ body::before {
 }
 
 #new-game-btn {
-    padding: 8px 16px;
-    background-color: #2E9DF7; /* Charity: water Blue */
+    padding: 16px 32px;
+    background-color: #2E9DF7;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    display: none; /* Initially hidden */
-    padding: 12px 28px;
+    font-size: 28px;         /* Larger font for readability */
+    padding: 22px 48px;      /* Larger padding for bigger button */
+    min-width: 200px;        /* Ensure buttons are wide enough */
+    display: none;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
     box-shadow: 0 2px 8px rgba(44, 130, 201, 0.12);
     outline: none;
@@ -209,8 +215,10 @@ body::before {
     content: "";
     display: block;
     position: absolute;
-    left: 50%; top: 50%;
-    width: 0; height: 0;
+    left: 50%; 
+    top: 50%;
+    width: 0; 
+    height: 0;
     background: rgba(255,255,255,0.2);
     border-radius: 100%;
     transform: translate(-50%, -50%);
@@ -222,13 +230,6 @@ body::before {
     width: 120%;
     height: 120%;
     transition: width 0s, height 0s;
-}
-
-.score {
-    flex: 0 1 auto;  /* Don't grow, can shrink, auto basis */
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
 }
 
 .water-drop,
@@ -247,7 +248,7 @@ body::before {
 }
 
 .water-drop {
-    background-color: #2E9DF7; /* Charity: water Blue */
+    background-color: #2E9DF7;
 }
 
 .water-drop:hover,
@@ -259,8 +260,7 @@ body::before {
 }
 
 .bad-drop {
-    background-color: #F5402C; /* Charity: water Red */
-    /* No shake animation, falls like water-drop */
+    background-color: #F5402C;
 }
 
 @keyframes dropFall {
@@ -286,7 +286,7 @@ body::before {
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: #FFC907; /* Charity: water Yellow */
+    background-color: #FFC907;
     animation: confettiFall 2s linear forwards, spin 1.2s linear infinite, confettiBounce 2s ease-in-out;
     border-radius: 50%;
 }
@@ -316,19 +316,19 @@ body::before {
 }
 
 .game-title {
-    color: #2E9DF7; /* Charity: water Blue */
-    font-size: 56px;
+    color: #2E9DF7;
+    font-size: 56px; /* Larger for visibility */
     font-weight: 800;
     letter-spacing: 0.03em;
     line-height: 1.1;
     margin-top: 0;
-    margin-bottom: 5px;  /* reduced from 20px */
+    margin-bottom: 5px;
     text-align: center;
 }
 
 .game-tagline {
-    color: #4FCB53; /* Charity: water Green */
-    font-size: 24px;
+    color: #4FCB53;
+    font-size: 28px;
     font-weight: 500;
     letter-spacing: 0.02em;
     line-height: 1.3;
@@ -384,7 +384,7 @@ body::before {
 .game-logo {
     width: 150px;
     height: auto;
-    flex-shrink: 0; /* Prevent the logo from shrinking */
+    flex-shrink: 0;
 }
 
 .game-content {
@@ -411,7 +411,7 @@ body::before {
     gap: 6px;
     margin-top: 12px;
     margin-bottom: 8px;
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: 600;
     color: #2E9DF7;
     text-shadow: 0 2px 8px #fff, 0 0px 16px #2E9DF733;
@@ -420,7 +420,7 @@ body::before {
 
 .bucket-info .score,
 .bucket-info .timer {
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-weight: 700;
     color: #2E9DF7;
     text-align: center;
@@ -429,8 +429,8 @@ body::before {
 .bucket {
     width: 120px;
     height: 150px;
-    background-color: #FFC907; /* Charity: water Yellow */
-    border: 2px solid #2E9DF7; /* Charity: water Blue */
+    background-color: #FFC907;
+    border: 2px solid #2E9DF7;
     border-radius: 0 0 20px 20px;
     overflow: hidden;
     position: relative;
@@ -441,30 +441,30 @@ body::before {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 0%; /* Initial water level */
-    background: linear-gradient(180deg, #2E9DF7, #8BD1CB); /* Charity: water Blue to Light Blue */
-    transition: height 0.3s ease; /* Smooth water level increase */
+    height: 0%;
+    background: linear-gradient(180deg, #2E9DF7, #8BD1CB);
+    transition: height 0.3s ease;
 }
 
 .record-board {
     width: 200px;
-    background-color: #FFC907; /* Charity: water Yellow */
-    border: 2px solid #2E9DF7; /* Charity: water Blue */
+    background-color: #FFC907;
+    border: 2px solid #2E9DF7;
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: #131313; /* Dark text for contrast */
+    color: #131313;
     font-family: 'Montserrat', 'Segoe UI', 'Avenir', Arial, sans-serif;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .record-board h2 {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 700;
     letter-spacing: 0.02em;
     margin-bottom: 10px;
     text-align: center;
-    color: #2E9DF7; /* Charity: water Blue */
+    color: #2E9DF7;
 }
 
 .record-board ul {
@@ -474,7 +474,7 @@ body::before {
 }
 
 .record-board li {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     letter-spacing: 0.01em;
     margin-bottom: 5px;
@@ -488,27 +488,30 @@ body::before {
 .difficulty-selector {
     margin-bottom: 10px;
     text-align: center;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     letter-spacing: 0.01em;
-    color: #2E9DF7; /* Charity: water Blue */
+    color: #2E9DF7;
 }
 
 .difficulty-selector select {
     padding: 5px;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     letter-spacing: 0.01em;
-    border: 2px solid #2E9DF7; /* Charity: water Blue */
+    border: 2px solid #2E9DF7;
     border-radius: 4px;
     background-color: #FFF;
-    color: #131313; /* Dark text for contrast */
+    color: #131313;
     cursor: pointer;
 }
 
-/* Footer styles for charity: water links */
 .cw-footer {
-    position: static;
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    left: auto;
+    transform: none;
     width: max-content;
     min-width: 220px;
     max-width: 320px;
@@ -517,36 +520,12 @@ body::before {
     text-align: right;
     padding: 14px 18px 8px 18px;
     font-family: 'Montserrat', 'Avenir', Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 20px;
     letter-spacing: 0.01em;
     box-shadow: 0 2px 8px rgba(44, 130, 201, 0.08);
     border-radius: 8px;
-    z-index: 500;
-    margin: 0 0 16px 0;
-    pointer-events: auto;
-}
-
-@media (max-width: 1200px) {
-    .cw-footer {
-        right: unset;
-        top: unset;
-    }
-}
-
-@media (max-width: 950px) {
-    .cw-footer {
-        position: static;
-        margin: 16px auto 0 auto;
-        display: block;
-        text-align: center;
-        left: unset;
-        right: unset;
-        top: unset;
-        transform: none;
-        box-shadow: 0 2px 8px rgba(44, 130, 201, 0.08);
-        border-radius: 8px;
-    }
+    z-index: 200;
+    margin: 0;
 }
 
 .cw-footer .cw-link {
@@ -562,7 +541,7 @@ body::before {
 }
 
 .cw-footer-text {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.01em;
     color: #e6e6e6;
@@ -571,149 +550,170 @@ body::before {
     text-align: right;
 }
 
-.game-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    position: relative;
-}
-
-.logo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-}
-
-.bucket-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    margin-top: 12px;
-    margin-bottom: 8px;
-    font-size: 1.2em;
-    font-weight: 600;
-    color: #2E9DF7;
-    text-shadow: 0 2px 8px #fff, 0 0px 16px #2E9DF733;
-    letter-spacing: 0.01em;
-}
-
-.bucket-info .score,
-.bucket-info .timer {
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #2E9DF7;
-    text-align: center;
-}
-
-.bucket {
-    width: 120px;
-    height: 150px;
-    background-color: #FFC907; /* Charity: water Yellow */
-    border: 2px solid #2E9DF7; /* Charity: water Blue */
-    border-radius: 0 0 20px 20px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.water-level {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 0%; /* Initial water level */
-    background: linear-gradient(180deg, #2E9DF7, #8BD1CB); /* Charity: water Blue to Light Blue */
-    transition: height 0.3s ease; /* Smooth water level increase */
-}
-
-.record-board {
-    width: 200px;
-    background-color: #FFC907; /* Charity: water Yellow */
-    border: 2px solid #2E9DF7; /* Charity: water Blue */
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: #131313; /* Dark text for contrast */
-    font-family: 'Montserrat', 'Segoe UI', 'Avenir', Arial, sans-serif;
-    font-size: 20px;
-}
-
-.record-board h2 {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    margin-bottom: 10px;
-    text-align: center;
-    color: #2E9DF7; /* Charity: water Blue */
-}
-
-.record-board ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.record-board li {
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    margin-bottom: 5px;
-    padding: 5px;
-    background-color: #FFF;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.difficulty-selector {
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    color: #2E9DF7; /* Charity: water Blue */
-}
-
-.difficulty-selector select {
-    padding: 5px;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    border: 2px solid #2E9DF7; /* Charity: water Blue */
-    border-radius: 4px;
-    background-color: #FFF;
-    color: #131313; /* Dark text for contrast */
-    cursor: pointer;
-}
-
-/* Footer styles for charity: water links */
-.cw-footer {
-    position: static;
-    width: max-content;
-    min-width: 220px;
-    max-width: 320px;
-    background: #2E9DF7;
-    color: #fff;
-    text-align: right;
-    padding: 14px 18px 8px 18px;
-    font-family: 'Montserrat', 'Avenir', Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    box-shadow: 0 2px 8px rgba(44, 130, 201, 0.08);
-    border-radius: 8px;
-    z-index: 500;
-    margin: 0 0 16px 0;
-    pointer-events: auto;
-}
-
 @media (max-width: 1200px) {
+    .score-panel,
+    #game-container {
+        width: 98vw;
+        min-width: 0;
+        max-width: 100vw;
+    }
+}
+
+@media (max-width: 950px) {
+    .game-layout {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    .record-board {
+        width: 95vw;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    .game-content {
+        width: 100vw;
+    }
+    .score-panel {
+        width: 95vw;
+        min-width: 0;
+        max-width: 100vw;
+    }
+    #game-container {
+        width: 95vw;
+        min-width: 0;
+        max-width: 100vw;
+        height: 50vh;
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 16px;
+    }
+    .game-title {
+        font-size: 32px;
+    }
+    .game-tagline {
+        font-size: 18px;
+    }
+    .score-panel {
+        font-size: 16px;
+        padding: 8px;
+    }
+    .score, .timer {
+        font-size: 18px;
+    }
+    #start-btn, #reset-btn, #new-game-btn {
+        font-size: 18px;
+        padding: 12px 24px;
+        min-width: 120px;
+    }
+    .record-board {
+        font-size: 14px;
+        padding: 6px;
+    }
     .cw-footer {
-        right: unset;
+        font-size: 13px;
+        padding: 12px 0 6px 0;
+    }
+    .cw-footer-text {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 400px) {
+    .game-title {
+        font-size: 20px;
+    }
+    .game-tagline {
+        font-size: 10px;
+    }
+    .score-panel {
+        font-size: 10px;
+        padding: 2px;
+    }
+    .score, .timer {
+        font-size: 10px;
+    }
+    #start-btn, #reset-btn, #new-game-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+        min-width: 80px;
+    }
+    .record-board {
+        font-size: 10px;
+        padding: 2px;
+    }
+    .cw-footer {
+        font-size: 9px;
+        padding: 6px 0 3px 0;
+    }
+    .cw-footer-text {
+        font-size: 8px;
+    }
+}
+
+@keyframes shake-anim {
+    0% { transform: translateX(0);}
+    20% { transform: translateX(-8px);}
+    40% { transform: translateX(8px);}
+    60% { transform: translateX(-6px);}
+    80% { transform: translateX(6px);}
+    100% { transform: translateX(0);}
+}
+.shake-anim {
+    animation: shake-anim 0.5s;
+}
+    }
+    
+    .cw-footer-text {
+        font-size: 11px;
+    }
+    
+    #start-btn, #reset-btn, #new-game-btn {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .game-title {
+        font-size: 22px;
+    }
+    
+    .game-tagline {
+        font-size: 10px;
+    }
+    
+    .score-panel {
+        font-size: 8px;
+        padding: 2px;
+    }
+    
+    .score, .timer {
+        font-size: 8px;
+    }
+    
+    .record-board {
+        font-size: 11px;
+        padding: 3px;
+    }
+    
+    .cw-footer {
+        font-size: 10px;
+        padding: 8px 0 4px 0;
+    }
+    
+    .cw-footer-text {
+        font-size: 9px;
+    }
+    
+    #start-btn, #reset-btn, #new-game-btn {
+        font-size: 7px;
+        padding: 5px;
+    }
+}
         top: unset;
     }
 }

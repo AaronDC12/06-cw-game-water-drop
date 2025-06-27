@@ -321,6 +321,3 @@ function updateRecordBoard(timeTaken) {
     recordListElement.appendChild(listItem);
   });
 }
-
-// Example: Trigger celebration when score reaches 100
-if (score >= 100) celebrateWin();
